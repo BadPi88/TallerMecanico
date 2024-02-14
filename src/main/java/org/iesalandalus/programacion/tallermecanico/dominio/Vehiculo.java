@@ -3,7 +3,7 @@ package org.iesalandalus.programacion.tallermecanico.dominio;
 import java.util.Objects;
 
 public record Vehiculo(String marca, String modelo, String matricula) {
-    private static final String ER_MARCA = "[A-Za-z0-9 \\-]+";
+    private static final String ER_MARCA = "[A-Z][a-z]+([ -]?[A-Z][a-z]+)*|[A-Z]+";
     private static final String ER_MATRICULA = "^\\d{4}[BCDFGHJKLMNPRSTVWXYZ]{3}";
 
 
@@ -16,6 +16,9 @@ public record Vehiculo(String marca, String modelo, String matricula) {
     public void validarMarca(String marca) {
         Objects.requireNonNull(marca, "La marca no puede ser nula.");
         if (!marca.matches(ER_MARCA)) {
+            throw new IllegalArgumentException("La marca no tiene un formato válido.");
+        }
+        if (marca.isBlank()){
             throw new IllegalArgumentException("La marca no tiene un formato válido.");
         }
         

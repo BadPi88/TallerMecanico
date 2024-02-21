@@ -1,6 +1,5 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.dominio;
 
-import org.iesalandalus.programacion.tallermecanico.dominio.Cliente;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -218,7 +216,7 @@ class RevisionTest {
         String cadenaCliente = "Bob Esponja - 11223344B (950112233)";
         String caenaVehiculo = "Seat León - 1234BCD";
         when(cliente.toString()).thenReturn(cadenaCliente);
-        when(vehiculo.toString()).thenReturn(cadenaVehiculo);
+        when(vehiculo.toString()).thenReturn(caenaVehiculo);
         String cadenaAyer = ayer.format(Revision.FORMATO_FECHA);
         String cadenaHoy = hoy.format(Revision.FORMATO_FECHA);
         String cadena = String.format("%s - %s: (%s - ), 0 horas, 0,00 € en material", cadenaCliente, caenaVehiculo, cadenaAyer);

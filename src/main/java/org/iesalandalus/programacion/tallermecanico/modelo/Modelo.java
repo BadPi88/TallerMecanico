@@ -22,7 +22,6 @@ public class Modelo {
     public Modelo() {
 
     }
-
     public void comenzar() {
         clientes = new Clientes();
         vehiculos = new Vehiculos();
@@ -42,24 +41,24 @@ public class Modelo {
     }
 
     public void insertar(Revision revision) throws OperationNotSupportedException {
-        Objects.requireNonNull(revision, "AlquilerNuloErrorInsertar");
+        Objects.requireNonNull(revision, "Alquiler NuloError al Insertar");
         clientes.buscar(revision.getCliente());
         vehiculos.buscar(revision.getVehiculo());
         revisiones.insertar(new Revision(revision));
     }
-
+    //Cliente buscado comprobamos si no es nulo, es decir que existe.
     public Cliente buscar(Cliente cliente) {
-        clientes.buscar(cliente);
+        cliente = Objects.requireNonNull(clientes.buscar(cliente),"No existe un cliente igual");
         return new Cliente(cliente);
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
-        vehiculos.buscar(vehiculo);
-        return new Vehiculo(vehiculo.marca(), vehiculo.modelo(), vehiculo.matricula());
+        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo),"No existe un vehiculo igual");
+        return vehiculo;
     }
 
     public Revision buscar(Revision revision) {
-        revisiones.buscar(revision);
+        revision = Objects.requireNonNull(revisiones.buscar(revision),"No existe una revision igual");
         return new Revision(revision);
     }
 
@@ -99,12 +98,11 @@ public class Modelo {
     }
 
     public List<Cliente> getClientes() {
-
-        List<Cliente> listaClientes = new ArrayList<>();
+        List<Cliente> copiaClientes = new ArrayList<>();
         for (Cliente cliente : clientes.get()) {
-            listaClientes.add(new Cliente(cliente));
+            copiaClientes.add(new Cliente(cliente));
         }
-        return listaClientes;
+        return copiaClientes;
     }
 
     public List<Vehiculo> getVehiculos() {

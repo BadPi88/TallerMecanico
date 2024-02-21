@@ -22,6 +22,9 @@ public class Revision {
         setCliente(cliente);
         setVehiculo(vehiculo);
         setFechaInicio(fechaInicio);
+        fechaFin = null;
+        horas = 0;
+        precioMaterial = 0;
 
     }
 
@@ -130,7 +133,7 @@ public class Revision {
     }
 
     private float getDias() {
-        return ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+        return (estaCerrada() ?ChronoUnit.DAYS.between( fechaInicio, fechaFin) : 0);
     }
     @Override
     public String toString() {

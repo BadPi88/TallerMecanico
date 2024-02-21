@@ -22,14 +22,14 @@ public class Revisiones {
     }
 
     public List<Revision> get(Cliente cliente) {
-        List<Revision> listaTemporal = new ArrayList<>();
+        List<Revision> revisionClientes = new ArrayList<>();
 
         for (Revision revision : coleccionRevisiones) {
             if (revision.getCliente().equals(cliente)) {
-                listaTemporal.add(revision);
+                revisionClientes.add(revision);
             }
         }
-        return listaTemporal;
+        return revisionClientes;
     }
 
     public List<Revision> get(Vehiculo vehiculo) {
@@ -75,19 +75,17 @@ public class Revisiones {
 
     public void anadirHoras(Revision revision, int horas) throws OperationNotSupportedException {
         Objects.requireNonNull(revision, "No puedo operar sobre una revisión nula.");
-
+        Revision revisionEncontrada = buscar(revision);
         if (!coleccionRevisiones.contains(revision)) {
             throw new OperationNotSupportedException("No existe ninguna revisión igual.");
         }
-        revision.anadirHoras(horas);
+        revisionEncontrada.anadirHoras(horas);
     }
 
     public void anadirPrecioMaterial(Revision revision, float precioMaterial) throws OperationNotSupportedException {
-        Objects.requireNonNull(revision, "La revision no puede ser nula.");
-        if (!coleccionRevisiones.contains(revision)) {
-            throw new OperationNotSupportedException("No existe ninguna revisión igual.");
-        }
-        revision.anadirPrecioMaterial(precioMaterial);
+
+        Revision revisionEncontrada = getRevision(revision);
+        revisionEncontrada.anadirPrecioMaterial(precioMaterial);
     }
 
     public void cerrar(Revision revision, LocalDate fechaFin) throws OperationNotSupportedException {
@@ -104,10 +102,7 @@ public class Revisiones {
         Objects.requireNonNull(revision, "No se puede buscar una revisión nula.");
         int indice = coleccionRevisiones.indexOf(revision);
         Revision aux = null;
-        if (indice != -1) {
-            aux = coleccionRevisiones.get(indice);
-
-        }
+        if (indice != -1) aux = coleccionRevisiones.get(indice);
         return aux;
     }
 
@@ -120,5 +115,15 @@ public class Revisiones {
             throw new OperationNotSupportedException("No existe ninguna revisión igual.");
         }
         coleccionRevisiones.remove(indice);
+    }
+
+    private Revision getRevision(Revision revision) throws OperationNotSupportedException {
+        Objects.requireNonNull(revision, "la revision no puede ser nula");
+        Revision revisionEncontrada = buscar(revision);
+        if (revisionEncontrada == null) {
+            throw new OperationNotSupportedException("No existe ninguna revisión igual.");
+        }
+        return revisionEncontrada;
+
     }
 }

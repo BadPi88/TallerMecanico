@@ -54,7 +54,7 @@ public class Consola {
         fecha = LocalDate.parse(fechaString, formatoFecha);
         return fecha;
     }
-    public static Revision leerCliente(){
+    public static Cliente leerCliente(){
         String dni = leerCadena("Por favor, introduzca el DNI del cliente:");
         String nombre = leerNuevoNombre();
         String telefono = leerNuevoTelefono();
@@ -70,7 +70,7 @@ public class Consola {
     public static String leerNuevoTelefono(){
         return leerCadena("Por favor, introduzca el número de teléfono del cliente:");
     }
-    public static Revision leerVehiculo(){
+    public static Vehiculo leerVehiculo(){
         String marca = leerCadena("Por favor, introduzca la marca del vehículo:");
         String modelo = leerCadena("Por favor, introduzca el modelo del vehículo:");
         String matricula = leerCadena("Por favor, introduzca la matrícula del vehículo:");

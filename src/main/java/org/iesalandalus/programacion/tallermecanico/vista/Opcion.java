@@ -4,16 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Opcion {
-    INSENTAR_CLIENTE(1, "Insertar cliente"),
+    INSERTAR_CLIENTE(1, "Insertar cliente"),
     BUSCAR_CLIENTE(2, "Buscar cliente"),
     BORRAR_CLIENTE(3, "Borrar cliente"),
     LISTAR_CLIENTES(4, "Listar clientes"),
     MODIFICAR_CLIENTE(5, "Modificar cliente"),
-    INSENTAR_VEHICULO(6, "Insertar vehículo"),
+    INSERTAR_VEHICULO(6, "Insertar vehículo"),
     BUSCAR_VEHICULO(7, "Buscar vehículo"),
     BORRAR_VEHICULO(8, "Borrar vehículo"),
     LISTAR_VEHICULOS(9, "Listar vehículos"),
-    INSENTAR_REVISION(10, "Insertar revisión"),
+    INSERTAR_REVISION(10, "Insertar revisión"),
     BUSCAR_REVISION(11, "Buscar revisión"),
     BORRAR_REVISION(12, "Borrar revisión"),
     LISTAR_REVISIONES(13, "Listar revisiones"),
@@ -28,7 +28,7 @@ public enum Opcion {
     private String mensaje;
     private static final Map<Integer, Opcion> opciones = new HashMap<>();
     static{
-        for (Opcion opcion : Opcion.values()){
+        for (Opcion opcion : values()){
             opciones.put(opcion.numeroOpcion, opcion);
         }
     }
@@ -38,10 +38,10 @@ public enum Opcion {
         this.mensaje = mensaje;
     }
     public static boolean esValida(int numeroOpcion) {
-        return !opciones.containsValue(numeroOpcion);
+        return opciones.containsKey(numeroOpcion);
     }
     public static Opcion get(int numeroOpcion) {
-        if (esValida(numeroOpcion)) {
+        if (!esValida(numeroOpcion)) {
             throw new IllegalArgumentException("Opción inválida");
         }
         return opciones.get(numeroOpcion);
@@ -50,6 +50,6 @@ public enum Opcion {
     @Override
     public String toString() {
 
-        return String.format("%s , %s", numeroOpcion, mensaje);
+        return String.format("%d- %s%n", numeroOpcion, mensaje);
     }
 }

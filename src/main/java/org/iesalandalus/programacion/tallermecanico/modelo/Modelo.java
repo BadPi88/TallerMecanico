@@ -22,6 +22,7 @@ public class Modelo {
     public Modelo() {
 
     }
+
     public void comenzar() {
         clientes = new Clientes();
         vehiculos = new Vehiculos();
@@ -46,19 +47,20 @@ public class Modelo {
         vehiculos.buscar(revision.getVehiculo());
         revisiones.insertar(new Revision(revision));
     }
+
     //Cliente buscado comprobamos si no es nulo, es decir que existe.
     public Cliente buscar(Cliente cliente) {
-        cliente = Objects.requireNonNull(clientes.buscar(cliente),"No existe un cliente igual");
+        cliente = Objects.requireNonNull(clientes.buscar(cliente), "No existe un cliente igual");
         return new Cliente(cliente);
     }
 
     public Vehiculo buscar(Vehiculo vehiculo) {
-        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo),"No existe un vehiculo igual");
+        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehiculo igual");
         return vehiculo;
     }
 
     public Revision buscar(Revision revision) {
-        revision = Objects.requireNonNull(revisiones.buscar(revision),"No existe una revision igual");
+        revision = Objects.requireNonNull(revisiones.buscar(revision), "No existe una revision igual");
         return new Revision(revision);
     }
 

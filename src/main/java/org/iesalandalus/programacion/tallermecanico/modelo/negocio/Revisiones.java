@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Revisiones {
-    private List<Revision> coleccionRevisiones;
+    private final List<Revision> coleccionRevisiones;
 
     public Revisiones() {
         coleccionRevisiones = new ArrayList<>();
@@ -101,9 +101,8 @@ public class Revisiones {
     public Revision buscar(Revision revision) {
         Objects.requireNonNull(revision, "No se puede buscar una revisión nula.");
         int indice = coleccionRevisiones.indexOf(revision);
-        Revision aux = null;
-        if (indice != -1) aux = coleccionRevisiones.get(indice);
-        return aux;
+
+        return (indice == -1)? null : coleccionRevisiones.get(indice);
     }
 
     public void borrar(Revision revision) throws OperationNotSupportedException {

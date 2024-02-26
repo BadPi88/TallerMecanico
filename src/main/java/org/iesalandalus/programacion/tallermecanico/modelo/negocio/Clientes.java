@@ -31,31 +31,26 @@ public class Clientes {
     public Cliente buscar(Cliente cliente) {
         Objects.requireNonNull(cliente, "No se puede buscar un cliente nulo.");
         int indice = coleccionClientes.indexOf(cliente);
-        Cliente clienteComprobar = null;
-        if (indice != -1) {
-            clienteComprobar = coleccionClientes.get(indice);
-        }
-        return clienteComprobar;
-
+        return (indice == -1) ? null : coleccionClientes.get(indice);
 
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
         Objects.requireNonNull(cliente, "No se puede modificar un cliente nulo.");
-        if (buscar(cliente) == null) {
+        Cliente clienteBuscado = buscar(cliente);
+        if (clienteBuscado == null) {
             throw new OperationNotSupportedException("No existe ningún cliente con ese DNI.");
         }
         boolean modificado = false;
-        int indice = coleccionClientes.indexOf(cliente);
-        if (telefono != null && !telefono.isBlank()) {
-            cliente.setTelefono(telefono);
-            modificado = true;
-        }
         if (nombre != null && !nombre.isBlank()) {
-            cliente.setNombre(nombre);
+            clienteBuscado.setNombre(nombre);
             modificado = true;
         }
-        coleccionClientes.set(indice, cliente);
+        if (telefono != null && !telefono.isBlank()) {
+            clienteBuscado.setTelefono(telefono);
+            modificado = true;
+        }
+
         return modificado;
     }
 

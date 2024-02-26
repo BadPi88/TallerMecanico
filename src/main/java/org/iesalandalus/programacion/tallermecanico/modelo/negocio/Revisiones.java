@@ -66,7 +66,6 @@ public class Revisiones {
         Cliente cliente = revision.getCliente();
         Vehiculo vehiculo = revision.getVehiculo();
         LocalDate fechaRevision = revision.getFechaInicio();
-
         comprobarRevision(cliente, vehiculo, fechaRevision);
 
         coleccionRevisiones.add(revision);
@@ -101,7 +100,6 @@ public class Revisiones {
     public Revision buscar(Revision revision) {
         Objects.requireNonNull(revision, "No se puede buscar una revisión nula.");
         int indice = coleccionRevisiones.indexOf(revision);
-
         return (indice == -1)? null : coleccionRevisiones.get(indice);
     }
 

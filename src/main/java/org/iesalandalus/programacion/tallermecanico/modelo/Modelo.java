@@ -43,9 +43,9 @@ public class Modelo {
 
     public void insertar(Revision revision) throws OperationNotSupportedException {
         Objects.requireNonNull(revision, "Alquiler NuloError al Insertar");
-        clientes.buscar(revision.getCliente());
-        vehiculos.buscar(revision.getVehiculo());
-        revisiones.insertar(new Revision(revision));
+        Cliente cliente = clientes.buscar(revision.getCliente());
+        Vehiculo vehiculo = vehiculos.buscar(revision.getVehiculo());
+        revisiones.insertar(new Revision(cliente, vehiculo, revision.getFechaInicio()));
     }
 
     //Cliente buscado comprobamos si no es nulo, es decir que existe.

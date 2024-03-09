@@ -351,11 +351,11 @@
                         <body>10F</body>
                       </defaultValue>
                     </ownedAttribute>
-                    <ownedAttribute xmi:type="uml:Property" xmi:id="_Dxv1AMzIEe66S_aNl6MGrQ" name="cliente" visibility="protected" type="_jXDz4MWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_WZaBwMzKEe66S_aNl6MGrQ"/>
-                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxwcEMzIEe66S_aNl6MGrQ" name="vehiculo" visibility="protected" type="_rnFwYMWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_XE_8cMzKEe66S_aNl6MGrQ"/>
-                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxwcEczIEe66S_aNl6MGrQ" name="fechaInicio" visibility="protected" type="_rnKo4MWLEe6GV74yg1DxAg" isUnique="false"/>
-                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxxDIMzIEe66S_aNl6MGrQ" name="fechaFin" visibility="protected" type="_rnKo4MWLEe6GV74yg1DxAg" isUnique="false"/>
-                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxxDIczIEe66S_aNl6MGrQ" name="horas" visibility="protected" type="_XiUR8MzHEe66S_aNl6MGrQ" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_Dxv1AMzIEe66S_aNl6MGrQ" name="cliente" visibility="private" type="_jXDz4MWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_WZaBwMzKEe66S_aNl6MGrQ"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxwcEMzIEe66S_aNl6MGrQ" name="vehiculo" visibility="private" type="_rnFwYMWLEe6GV74yg1DxAg" isUnique="false" aggregation="composite" association="_XE_8cMzKEe66S_aNl6MGrQ"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxwcEczIEe66S_aNl6MGrQ" name="fechaInicio" visibility="private" type="_rnKo4MWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxxDIMzIEe66S_aNl6MGrQ" name="fechaFin" visibility="private" type="_rnKo4MWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_DxxDIczIEe66S_aNl6MGrQ" name="horas" visibility="private" type="_XiUR8MzHEe66S_aNl6MGrQ" isUnique="false"/>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Dx0tgMzIEe66S_aNl6MGrQ" name="Trabajo" specification="_DxxqMMzIEe66S_aNl6MGrQ">
                       <language>JAVA</language>
                       <body>
@@ -539,19 +539,19 @@
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx4-8MzIEe66S_aNl6MGrQ" name="getCliente" visibility="public" method="_Dx4-8szIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx4-8czIEe66S_aNl6MGrQ" type="_jXDz4MWLEe6GV74yg1DxAg" direction="return"/>
                     </ownedOperation>
-                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx5mAMzIEe66S_aNl6MGrQ" name="setCliente" visibility="protected" method="_Dx6NEczIEe66S_aNl6MGrQ">
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx5mAMzIEe66S_aNl6MGrQ" name="setCliente" visibility="private" method="_Dx6NEczIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx6NEMzIEe66S_aNl6MGrQ" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx60IMzIEe66S_aNl6MGrQ" name="getVehiculo" visibility="public" method="_Dx60IszIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx60IczIEe66S_aNl6MGrQ" type="_rnFwYMWLEe6GV74yg1DxAg" direction="return"/>
                     </ownedOperation>
-                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx7bMMzIEe66S_aNl6MGrQ" name="setVehiculo" visibility="protected" method="_Dx8CQczIEe66S_aNl6MGrQ">
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx7bMMzIEe66S_aNl6MGrQ" name="setVehiculo" visibility="private" method="_Dx8CQczIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx8CQMzIEe66S_aNl6MGrQ" name="vehiculo" type="_rnFwYMWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx8CQszIEe66S_aNl6MGrQ" name="getFechaInicio" visibility="public" method="_Dx8pUczIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx8pUMzIEe66S_aNl6MGrQ" type="_rnKo4MWLEe6GV74yg1DxAg" direction="return"/>
                     </ownedOperation>
-                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx9QYMzIEe66S_aNl6MGrQ" name="setFechaInicio" visibility="protected" method="_Dx93cczIEe66S_aNl6MGrQ">
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx9QYMzIEe66S_aNl6MGrQ" name="setFechaInicio" visibility="private" concurrency="guarded" method="_Dx93cczIEe66S_aNl6MGrQ">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Dx93cMzIEe66S_aNl6MGrQ" name="fechaInicio" type="_rnKo4MWLEe6GV74yg1DxAg"/>
                     </ownedOperation>
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_Dx93cszIEe66S_aNl6MGrQ" name="getFechaFin" visibility="public" method="_Dx-egczIEe66S_aNl6MGrQ">
@@ -606,7 +606,7 @@
                         <body>1.5F</body>
                       </defaultValue>
                     </ownedAttribute>
-                    <ownedAttribute xmi:type="uml:Property" xmi:id="_9kF_8szHEe66S_aNl6MGrQ" name="precioMaterial" visibility="protected" type="_rmxnUMWLEe6GV74yg1DxAg" isUnique="false"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_9kF_8szHEe66S_aNl6MGrQ" name="precioMaterial" visibility="private" type="_rmxnUMWLEe6GV74yg1DxAg" isUnique="false"/>
                     <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_9kK4cMzHEe66S_aNl6MGrQ" name="Mecanico" specification="_9kGnAMzHEe66S_aNl6MGrQ">
                       <language>JAVA</language>
                       <body>
@@ -2434,7 +2434,7 @@
                     <ownedOperation xmi:type="uml:Operation" xmi:id="_MxvGEM79Ee6dsIuvGKkUNw" name="GestorEventos" visibility="public" method="_Mx0loc79Ee6dsIuvGKkUNw">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_sXq74NAXEe6Ar5r2jK_vkw" name="eventos" type="_rwQ9oNAXEe6Ar5r2jK_vkw"/>
                     </ownedOperation>
-                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Mx3o8M79Ee6dsIuvGKkUNw" name="suscribir" visibility="package" method="_Mx6sQc79Ee6dsIuvGKkUNw">
+                    <ownedOperation xmi:type="uml:Operation" xmi:id="_Mx3o8M79Ee6dsIuvGKkUNw" name="suscribir" visibility="public" method="_Mx6sQc79Ee6dsIuvGKkUNw">
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Mx4QAM79Ee6dsIuvGKkUNw" name="receptor" type="_Nx14MM79Ee6dsIuvGKkUNw"/>
                       <ownedParameter xmi:type="uml:Parameter" xmi:id="_Mx43EM79Ee6dsIuvGKkUNw" name="eventos" type="_7noe8NAXEe6Ar5r2jK_vkw"/>
                     </ownedOperation>

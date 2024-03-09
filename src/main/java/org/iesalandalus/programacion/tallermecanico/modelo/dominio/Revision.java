@@ -29,6 +29,7 @@ public class Revision extends Trabajo {
         horas = revision.horas;
     }
 
+    
     public float getPrecioEspecifico() {
         return getHoras() * FACTOR_HORA;
     }

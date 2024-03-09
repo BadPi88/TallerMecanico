@@ -84,7 +84,7 @@ public class Revisiones {
     public void anadirPrecioMaterial(Revision revision, float precioMaterial) throws OperationNotSupportedException {
 
         Revision revisionEncontrada = getRevision(revision);
-        revisionEncontrada.anadirPrecioMaterial(precioMaterial);
+        revisionEncontrada.getPrecioEspecifico();
     }
 
     public void cerrar(Revision revision, LocalDate fechaFin) throws OperationNotSupportedException {

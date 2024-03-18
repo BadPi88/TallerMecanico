@@ -72,7 +72,7 @@ class TrabajosTest {
     void getDevuelveTrabajosCorrectamente() {
         assertDoesNotThrow(() -> trabajos.insertar(revision));
         when(revision.getFechaFin()).thenReturn(anteayer);
-        when(revision.estaCerrado()).thenReturn(true);
+        when(revision.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> trabajos.insertar(trabajo3));
         List<Trabajo> copiaTrabajos = trabajos.get();
         assertEquals(2, copiaTrabajos.size());
@@ -86,7 +86,7 @@ class TrabajosTest {
     void getClienteValidoDevuelveTrabajosClienteCorrectamente() {
         assertDoesNotThrow(() -> trabajos.insertar(revision));
         when(revision.getFechaFin()).thenReturn(anteayer);
-        when(revision.estaCerrado()).thenReturn(true);
+        when(revision.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> trabajos.insertar(mecanico));
         assertDoesNotThrow(() -> trabajos.insertar(trabajo3));
         List<Trabajo> trabajosCliente = trabajos.get(cliente1);
@@ -101,7 +101,7 @@ class TrabajosTest {
     void getVehiculoValidoDevuelveTrabajosVehiculoCorrectamente() {
         assertDoesNotThrow(() -> trabajos.insertar(revision));
         when(revision.getFechaFin()).thenReturn(anteayer);
-        when(revision.estaCerrado()).thenReturn(true);
+        when(revision.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> trabajos.insertar(mecanico));
         assertDoesNotThrow(() -> trabajos.insertar(trabajo3));
         List<Trabajo> trabajosVehiculo = trabajos.get(vehiculo1);
@@ -145,11 +145,11 @@ class TrabajosTest {
         assertDoesNotThrow(() -> trabajos.cerrar(revision, anteayer));
         when(revision.getFechaInicio()).thenReturn(ayer);
         when(revision.getFechaFin()).thenReturn(anteayer);
-        when(revision.estaCerrado()).thenReturn(true);
+        when(revision.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> trabajos.insertar(revision));
-        when(revision.estaCerrado()).thenReturn(false);
+        when(revision.estaCerrada()).thenReturn(false);
         assertDoesNotThrow(() -> trabajos.cerrar(revision, ayer));
-        when(revision.estaCerrado()).thenReturn(true);
+        when(revision.estaCerrada()).thenReturn(true);
         when(revision.getFechaFin()).thenReturn(ayer);
         OperationNotSupportedException onse = assertThrows(OperationNotSupportedException.class, () -> trabajos.insertar(mecanico));
         assertEquals("El cliente tiene otro trabajo posterior.", onse.getMessage());
@@ -161,11 +161,11 @@ class TrabajosTest {
         assertDoesNotThrow(() -> trabajos.cerrar(revision, anteayer));
         when(revision.getFechaInicio()).thenReturn(ayer);
         when(revision.getFechaFin()).thenReturn(anteayer);
-        when(revision.estaCerrado()).thenReturn(true);
+        when(revision.estaCerrada()).thenReturn(true);
         assertDoesNotThrow(() -> trabajos.insertar(revision));
-        when(revision.estaCerrado()).thenReturn(false);
+        when(revision.estaCerrada()).thenReturn(false);
         assertDoesNotThrow(() -> trabajos.cerrar(revision, ayer));
-        when(revision.estaCerrado()).thenReturn(true);
+        when(revision.estaCerrada()).thenReturn(true);
         when(revision.getFechaFin()).thenReturn(ayer);
         OperationNotSupportedException onse = assertThrows(OperationNotSupportedException.class, () -> trabajos.insertar(trabajo3));
         assertEquals("El vehículo tiene otro trabajo posterior.", onse.getMessage());

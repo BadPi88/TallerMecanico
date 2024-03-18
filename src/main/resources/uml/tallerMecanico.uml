@@ -796,7 +796,7 @@
                         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jr_SIMzKEe66S_aNl6MGrQ"/>
                         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jr_SIczKEe66S_aNl6MGrQ" value="*"/>
                       </ownedAttribute>
-                      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_yh2esczAEe6KuY7X7xWG0g" name="Trabajos implements ITrabajos" client="_yh1QkMzAEe6KuY7X7xWG0g" supplier="_yh13oMzAEe6KuY7X7xWG0g" contract="_yh13oMzAEe6KuY7X7xWG0g"/>
+                      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_yh2esczAEe6KuY7X7xWG0g" name="Trabajos implements org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos" client="_yh1QkMzAEe6KuY7X7xWG0g" supplier="_yh13oMzAEe6KuY7X7xWG0g" contract="_yh13oMzAEe6KuY7X7xWG0g"/>
                       <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_8ydf8MzNEe66S_aNl6MGrQ" client="_yh1QkMzAEe6KuY7X7xWG0g" supplier="__24bkMy_Ee6KuY7X7xWG0g" contract="__24bkMy_Ee6KuY7X7xWG0g"/>
                       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_yh468czAEe6KuY7X7xWG0g" name="Trabajos" specification="_yh4T48zAEe6KuY7X7xWG0g">
                         <language>JAVA</language>
@@ -1491,19 +1491,19 @@
                     </ownedOperation>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Association" xmi:id="_KCpuMMzPEe66S_aNl6MGrQ" name="A_clientes_modeloCascada" memberEnd="_DqB_QMzPEe66S_aNl6MGrQ _KCq8UMzPEe66S_aNl6MGrQ">
-                    <ownedEnd xmi:type="uml:Property" xmi:id="_KCq8UMzPEe66S_aNl6MGrQ" name="modeloCascada" type="_Dp-78MzPEe66S_aNl6MGrQ" association="_KCpuMMzPEe66S_aNl6MGrQ">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_KCq8UMzPEe66S_aNl6MGrQ" name="modelo" type="_Dp-78MzPEe66S_aNl6MGrQ" association="_KCpuMMzPEe66S_aNl6MGrQ">
                       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KCq8UczPEe66S_aNl6MGrQ"/>
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KCrjYMzPEe66S_aNl6MGrQ" value="1"/>
                     </ownedEnd>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Association" xmi:id="_OzdKwMzPEe66S_aNl6MGrQ" name="A_vehiculos_modeloCascada" memberEnd="_DqCmUMzPEe66S_aNl6MGrQ _OzeY4MzPEe66S_aNl6MGrQ">
-                    <ownedEnd xmi:type="uml:Property" xmi:id="_OzeY4MzPEe66S_aNl6MGrQ" name="modeloCascada" type="_Dp-78MzPEe66S_aNl6MGrQ" association="_OzdKwMzPEe66S_aNl6MGrQ">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_OzeY4MzPEe66S_aNl6MGrQ" name="modelo" type="_Dp-78MzPEe66S_aNl6MGrQ" association="_OzdKwMzPEe66S_aNl6MGrQ">
                       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_o0HDoNAZEe6Ar5r2jK_vkw"/>
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OzeY4szPEe66S_aNl6MGrQ" value="*"/>
                     </ownedEnd>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Association" xmi:id="_Qv3NEMzPEe66S_aNl6MGrQ" name="A_trabajos_modeloCascada" memberEnd="_DqCmUczPEe66S_aNl6MGrQ _Qv5CQMzPEe66S_aNl6MGrQ">
-                    <ownedEnd xmi:type="uml:Property" xmi:id="_Qv5CQMzPEe66S_aNl6MGrQ" name="modeloCascada" type="_Dp-78MzPEe66S_aNl6MGrQ" association="_Qv3NEMzPEe66S_aNl6MGrQ">
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_Qv5CQMzPEe66S_aNl6MGrQ" name="modelo" type="_Dp-78MzPEe66S_aNl6MGrQ" association="_Qv3NEMzPEe66S_aNl6MGrQ">
                       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Qv5pUMzPEe66S_aNl6MGrQ"/>
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Qv5pUczPEe66S_aNl6MGrQ" value="1"/>
                     </ownedEnd>
@@ -2530,7 +2530,7 @@
                 <packagedElement xmi:type="uml:Package" xmi:id="_zA8gYMy-Ee6KuY7X7xWG0g" name="negocio">
                   <packagedElement xmi:type="uml:Class" xmi:id="_zA8gYcy-Ee6KuY7X7xWG0g" name="FabricaFuenteDatos"/>
                   <packagedElement xmi:type="uml:Interface" xmi:id="_jjC9EczAEe6KuY7X7xWG0g" name="IClientes"/>
-                  <packagedElement xmi:type="uml:Interface" xmi:id="_yh13oMzAEe6KuY7X7xWG0g" name="ITrabajos"/>
+                  <packagedElement xmi:type="uml:Interface" xmi:id="_yh13oMzAEe6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos"/>
                   <packagedElement xmi:type="uml:Interface" xmi:id="_1eEYMMzAEe6KuY7X7xWG0g" name="IVehiculos"/>
                   <packagedElement xmi:type="uml:Interface" xmi:id="_2blwYMzAEe6KuY7X7xWG0g" name="IFuenteDatos"/>
                 </packagedElement>
@@ -2634,7 +2634,7 @@
               <ownedParameter xmi:type="uml:Parameter" xmi:id="_8RELcMy_Ee6KuY7X7xWG0g" name="cliente" type="_jXDz4MWLEe6GV74yg1DxAg"/>
             </ownedOperation>
           </packagedElement>
-          <packagedElement xmi:type="uml:Interface" xmi:id="__24bkMy_Ee6KuY7X7xWG0g" name="ITrabajos" visibility="public">
+          <packagedElement xmi:type="uml:Interface" xmi:id="__24bkMy_Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos" visibility="public">
             <ownedOperation xmi:type="uml:Operation" xmi:id="__25CoMy_Ee6KuY7X7xWG0g" name="get" visibility="public">
               <ownedParameter xmi:type="uml:Parameter" xmi:id="__28tAMy_Ee6KuY7X7xWG0g" type="__25psMy_Ee6KuY7X7xWG0g" direction="return">
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__28tAcy_Ee6KuY7X7xWG0g"/>
@@ -2828,7 +2828,7 @@
   <Codegen:External xmi:id="_XYI8EMWREe6GV74yg1DxAg" name="org.iesalandalus.programacion.tallermecanico.controlador.Controlador" base_Classifier="_XYHG4cWREe6GV74yg1DxAg"/>
   <Codegen:External xmi:id="_zBB_8My-Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.FabricaFuenteDatos" base_Classifier="_zA8gYcy-Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_0aP1oMy-Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo" base_Classifier="_0aMyUMy-Ee6KuY7X7xWG0g"/>
-  <Codegen:External xmi:id="_cp6-kMy_Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.Modelo" base_Classifier="_0Z-I0My-Ee6KuY7X7xWG0g"/>
+  <Codegen:External xmi:id="_cp6-kMy_Ee6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.cascada.ModeloCascada" base_Classifier="_0Z-I0My-Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_cqMEUMy_Ee6KuY7X7xWG0g" name="IFuenteDatos" base_Classifier="_cqKPIMy_Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_cqOgkMy_Ee6KuY7X7xWG0g" name="FabricaFuenteDatos" base_Classifier="_cqMrYcy_Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_cqVOQMy_Ee6KuY7X7xWG0g" name="Cliente" base_Classifier="_cqUAIMy_Ee6KuY7X7xWG0g"/>
@@ -2839,11 +2839,11 @@
   <Codegen:External xmi:id="__2_wUMy_Ee6KuY7X7xWG0g" name="Vehiculo" base_Classifier="__2-iM8y_Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_HOuL0MzAEe6KuY7X7xWG0g" name="IClientes" base_Classifier="_8Q-E0My_Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_HOwoEMzAEe6KuY7X7xWG0g" name="IVehiculos" base_Classifier="_BUheQMzAEe6KuY7X7xWG0g"/>
-  <Codegen:External xmi:id="_HOx2MMzAEe6KuY7X7xWG0g" name="ITrabajos" base_Classifier="__24bkMy_Ee6KuY7X7xWG0g"/>
+  <Codegen:External xmi:id="_HOx2MMzAEe6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos" base_Classifier="__24bkMy_Ee6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_Ihc_AMzAEe6KuY7X7xWG0g" name="IFuenteDatos" base_Classifier="_HOsWoMzAEe6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_jjEyQMzAEe6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes" base_Classifier="_jjC9EczAEe6KuY7X7xWG0g"/>
   <standard:Create xmi:id="_jjIcoMzAEe6KuY7X7xWG0g" base_BehavioralFeature="_jjGncszAEe6KuY7X7xWG0g"/>
-  <Codegen:External xmi:id="_yh2esMzAEe6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos" base_Classifier="_yh13oMzAEe6KuY7X7xWG0g"/>
+  <Codegen:External xmi:id="_yh2esMzAEe6KuY7X7xWG0g" name="org.iesalandalus.programacion.tallermecanico.modelo.negocio.org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos" base_Classifier="_yh13oMzAEe6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_yh3s0MzAEe6KuY7X7xWG0g" name="Trabajo" base_Classifier="_yh3FwMzAEe6KuY7X7xWG0g"/>
   <standard:Create xmi:id="_yh468MzAEe6KuY7X7xWG0g" base_BehavioralFeature="_yh4T48zAEe6KuY7X7xWG0g"/>
   <Codegen:External xmi:id="_yh6wIMzAEe6KuY7X7xWG0g" name="Cliente" base_Classifier="_yh6JEMzAEe6KuY7X7xWG0g"/>

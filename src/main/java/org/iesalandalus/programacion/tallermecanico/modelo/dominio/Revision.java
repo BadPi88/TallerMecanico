@@ -1,9 +1,6 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.dominio;
 
-import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Revision extends Trabajo {
@@ -42,7 +39,7 @@ public class Revision extends Trabajo {
         String revision = String.format("Revisión -> %s - %s (%s",this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA));
 
         if (estaCerrada()) {
-            x = String.format("%s - %s), %s horas, %4.2f € total",
+            x = String.format("%s - %s): %s horas, %4.2f € total",
                     revision, this.fechaFin.format(FORMATO_FECHA), this.horas, getPrecio());
         } else {
             x = String.format("%s - ): %s horas",

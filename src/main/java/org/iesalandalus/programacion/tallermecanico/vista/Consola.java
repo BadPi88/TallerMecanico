@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.tallermecanico.vista;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
@@ -85,8 +86,13 @@ public class Consola {
         return Vehiculo.get(matricula);
     }
 
-    public static Revision leerRevision() {
-        return new Revision(leerClienteDni(), leerVehiculoMatricula(), leerFecha("Introduzca la fecha de inicio de la revisión:"));
+    public static Trabajo leerTrabajo() {
+        return new Trabajo(leerClienteDni(), leerVehiculoMatricula(), leerFecha("Introduzca la fecha de inicio de la revisión:")) {
+            @Override
+            public float getPrecioEspecifico() {
+                return 0;
+            }
+        };
     }
 
     public static int leerHoras() {

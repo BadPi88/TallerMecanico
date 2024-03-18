@@ -4,8 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.MockedConstruction;
 
 import javax.naming.OperationNotSupportedException;
@@ -193,10 +191,10 @@ class TrabajoTest {
 
     @Test
     void cerrarFechaFinValidaCierraCorrectamente() {
-        assertFalse(revision.estaCerrado());
+        assertFalse(revision.estaCerrada());
         assertNull(revision.getFechaFin());
         assertDoesNotThrow(() -> revision.cerrar(hoy));
-        assertTrue(revision.estaCerrado());
+        assertTrue(revision.estaCerrada());
         assertEquals(hoy, revision.getFechaFin());
     }
 

@@ -1,8 +1,9 @@
 package org.iesalandalus.programacion.tallermecanico.controlador;
 
-import org.iesalandalus.programacion.tallermecanico.modelo.Modelo;
+import org.iesalandalus.programacion.tallermecanico.modelo.cascada.ModeloCascada;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.tallermecanico.vista.Vista;
 
@@ -12,13 +13,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Controlador {
-    private final Modelo modelo;
+    private final ModeloCascada modelo;
     private final Vista vista;
 
-    public Controlador(Modelo modelo, Vista vista) {
+    public Controlador(ModeloCascada modelo, Vista vista) {
         Objects.requireNonNull(modelo, "El modelo no puede ser nulo.");
         Objects.requireNonNull(vista, "La vista no puede ser nula.");
-        this.modelo = new Modelo();
+        this.modelo = new ModeloCascada();
         this.vista = vista;
         this.vista.setControlador(this);
     }
@@ -41,8 +42,8 @@ public class Controlador {
         modelo.insertar(vehiculo);
     }
 
-    public void insertar(Revision revision) throws OperationNotSupportedException {
-        modelo.insertar(revision);
+    public void insertar(Trabajo trabajo) throws OperationNotSupportedException {
+        modelo.insertar(trabajo);
     }
 
     public Cliente buscar(Cliente cliente) {
@@ -53,8 +54,8 @@ public class Controlador {
         return modelo.buscar(vehiculo);
     }
 
-    public Revision buscar(Revision revision) {
-        return modelo.buscar(revision);
+    public Trabajo buscar(Trabajo trabajo) {
+        return modelo.buscar(trabajo);
     }
 
     public boolean modificar(Cliente cliente, String nombre, String telefono) throws OperationNotSupportedException {
@@ -93,16 +94,16 @@ public class Controlador {
         return modelo.getVehiculos();
     }
 
-    public List<Revision> getRevisiones() {
-        return modelo.getRevisiones();
+    public List<Trabajo> getTrabajos() {
+        return modelo.getTrabajos();
     }
 
-    public List<Revision> getRevisiones(Cliente cliente) {
-        return modelo.getRevisiones(cliente);
+    public List<Trabajo> getTrabajos(Cliente cliente) {
+        return modelo.getTrabajos();
     }
 
-    public List<Revision> getRevisiones(Vehiculo vehiculo) {
-        return modelo.getRevisiones(vehiculo);
+    public List<Trabajo> getTrabajos(Vehiculo vehiculo) {
+        return modelo.getTrabajos();
     }
 
 }

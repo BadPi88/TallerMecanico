@@ -3,13 +3,12 @@ package org.iesalandalus.programacion.tallermecanico.vista;
 import org.iesalandalus.programacion.tallermecanico.controlador.Controlador;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Revision;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 
 
-import javax.naming.OperationNotSupportedException;
 import java.util.List;
 import java.util.Objects;
-
 public class Vista {
     private Controlador controlador;
 
@@ -43,8 +42,8 @@ public class Vista {
             case BUSCAR_VEHICULO -> buscarVehiculo();
             case BORRAR_VEHICULO -> borrarVehiculo();
             case LISTAR_VEHICULOS -> listarVehiculos();
-            case INSERTAR_REVISION -> insertarRevision();
-            case BUSCAR_REVISION -> buscarRevision();
+            case INSERTAR_REVISION -> insertarTrabajo();
+            case BUSCAR_REVISION -> buscarTrabajo();
             case BORRAR_REVISION -> borrarRevision();
             case LISTAR_REVISIONES -> listarRevisiones();
             case LISTAR_REVISIONES_CLIENTE -> listarRevisionesCliente();
@@ -77,13 +76,13 @@ public class Vista {
         }
     }
 
-    private void insertarRevision() {
-        Consola.mostrarCabecera("Inserte una revisión");
+    private void insertarTrabajo() {
+        Consola.mostrarCabecera("Inserte un trabajo");
         try {
-            controlador.insertar(Consola.leerRevision());
-            System.out.println("La revisión se introdujo correctamente");
+            controlador.insertar(Consola.leerTrabajo());
+            System.out.println("El trabajo se introdujo correctamente");
         } catch (Exception e) {
-            System.out.println("La revision no se pudo insertar");
+            System.out.println("El trabajo no se pudo insertar");
         }
     }
 
@@ -106,12 +105,12 @@ public class Vista {
         }
     }
 
-    private void buscarRevision() {
-        Consola.mostrarCabecera("Busque una revisión");
+    private void buscarTrabajo() {
+        Consola.mostrarCabecera("Busque un trabajo");
         try {
-            System.out.println(controlador.buscar(Consola.leerRevision()));
+            System.out.println(controlador.buscar(Consola.leerTrabajo()));
         } catch (Exception e) {
-            System.out.println("La revisión buscada no existe.");
+            System.out.println("El trabajo buscado no existe.");
         }
     }
 
@@ -135,7 +134,7 @@ public class Vista {
     private void anadirHoras() {
         Consola.mostrarCabecera("Añada horas");
         try {
-            controlador.anadirHoras(Consola.leerRevision(), Consola.leerHoras());
+            controlador.anadirHoras((Revision) Consola.leerTrabajo(), Consola.leerHoras());
             System.out.println("Las horas han sido añadidas correctamente");
         } catch (Exception e) {
             System.out.println("Las horas no han sido añadidas correctamente");
@@ -145,16 +144,17 @@ public class Vista {
     private void anadirPrecioMaterial() {
         Consola.mostrarCabecera("Añade precio material");
         try {
-            controlador.anadirPrecioMaterial(Consola.leerRevision(), Consola.leerPrecioMaterial());
+            controlador.anadirPrecioMaterial((Revision) Consola.leerTrabajo(), Consola.leerPrecioMaterial());
         } catch (Exception e) {
             System.out.println("El precio del material no ha sido agregado correctamente");
         }
     }
 
+
     private void cerrar() {
         Consola.mostrarCabecera("Cierre la revisión");
         try {
-            controlador.cerrar(Consola.leerRevision(), Consola.leerFechaCierre());
+            controlador.cerrar((Revision) Consola.leerTrabajo(), Consola.leerFechaCierre());
         } catch (Exception e) {
             System.out.println("La revision no pudo cerrarse");
         }
@@ -183,7 +183,7 @@ public class Vista {
     private void borrarRevision() {
         Consola.mostrarCabecera("Borre revisión");
         try {
-            controlador.borrar(Consola.leerRevision());
+            controlador.borrar((Revision) Consola.leerTrabajo());
             System.out.println("La revisión fue eliminada correctamente");
         } catch (Exception e) {
             System.out.println("La revisión no pudo ser eliminada");
@@ -212,7 +212,7 @@ public class Vista {
 
     private void listarRevisiones() {
         Consola.mostrarCabecera("Listar de Revisiones");
-        List<Revision> listaRevisiones = controlador.getRevisiones();
+        List<Trabajo> listaRevisiones = controlador.getTrabajos();
         if (listaRevisiones.isEmpty()) {
             System.out.println("No se ha encontrado ninguna revisión para mostrar.");
         } else {
@@ -222,7 +222,7 @@ public class Vista {
 
     private void listarRevisionesCliente() {
         Consola.mostrarCabecera("Lista de revisiones de cliente");
-        List<Revision> listaRevisionesCliente = controlador.getRevisiones(Consola.leerClienteDni());
+        List<Trabajo> listaRevisionesCliente = controlador.getTrabajos(Consola.leerClienteDni());
         if (listaRevisionesCliente.isEmpty()) {
             System.out.println("No hay ninguna revisión para dicho cliente.");
         } else {
@@ -232,7 +232,7 @@ public class Vista {
 
     private void listarRevisionesVehiculo() {
         Consola.mostrarCabecera("Lista de revisiones vehiculo");
-        List<Revision> listaRevisionesVehiculo = controlador.getRevisiones(Consola.leerVehiculoMatricula());
+        List<Trabajo> listaRevisionesVehiculo = controlador.getTrabajos(Consola.leerVehiculoMatricula());
         if (listaRevisionesVehiculo.isEmpty()) {
             System.out.println("No hay ninguna revisión para el vehiculo.");
         } else {
@@ -244,4 +244,5 @@ public class Vista {
         Consola.mostrarCabecera("Salir");
         controlador.terminar();
     }
-}
+
+ }

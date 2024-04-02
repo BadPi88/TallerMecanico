@@ -62,10 +62,10 @@ public class Mecanico extends Trabajo {
 
         if (estaCerrada()) {
             x = String.format("%s - %s): %s horas, %4.2f € en material, %4.2f € total",
-                    revision, this.fechaFin.format(FORMATO_FECHA), this.horas, getPrecioMaterial(),getPrecio());
+                    revision, this.fechaFin.format(FORMATO_FECHA), this.horas, getPrecioMaterial(), getPrecio());
         } else {
             x = String.format("%s - ): %s horas, %4.2f € en material",
-                    revision, this.horas,getPrecioMaterial());
+                    revision, this.horas, getPrecioMaterial());
         }
         return x;
     }

@@ -14,6 +14,7 @@ import java.util.Objects;
 public class Trabajos implements org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos {
 
     private final List<Trabajo> coleccionTrabajos;
+    private Vehiculo vehiculo;
 
     public Trabajos() {
         coleccionTrabajos = new ArrayList<>();
@@ -91,11 +92,10 @@ public class Trabajos implements org.iesalandalus.programacion.tallermecanico.mo
     @Override
     public void anadirPrecioMaterial(Trabajo trabajo, float precioMaterial) throws OperationNotSupportedException {
 
-        Trabajo trabajoEncontrado = getTrabajoAbierto(trabajo);
+        Trabajo trabajoEncontrado = trabajo;
         trabajoEncontrado.getPrecioEspecifico();
         if (trabajoEncontrado instanceof Mecanico) {
             ((Mecanico) trabajoEncontrado).anadirPrecioMaterial(precioMaterial);
-
         } else {
             throw new OperationNotSupportedException("No se puede añadir precio al material para este tipo de trabajos.");
         }
@@ -124,22 +124,18 @@ public class Trabajos implements org.iesalandalus.programacion.tallermecanico.mo
         Objects.requireNonNull(trabajo, "No se puede borrar un trabajo nulo.");
 
         int indice = coleccionTrabajos.indexOf(trabajo);
-
         if (indice == -1) {
             throw new OperationNotSupportedException("No existe ningún trabajo igual.");
         }
         coleccionTrabajos.remove(indice);
     }
 
-    private Trabajo getTrabajoAbierto(Trabajo trabajo) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "No puedo añadir precio del material a un trabajo nulo.");
-        Trabajo trabajoEncontrado = buscar(trabajo);
-        if (trabajoEncontrado == null) {
-
+    private Trabajo getTrabajoAbierto(Vehiculo vehiculo) throws OperationNotSupportedException {
+        Objects.requireNonNull(vehiculo, "No puedo añadir precio del material a un trabajo nulo.");
+        Trabajo trabajoEncontrado = Trabajo.get(vehiculo);
+        if (trabajoEncontrado.estaCerrada())
             throw new OperationNotSupportedException("No existe ningún trabajo abierto para dicho vehículo.");
-        }
         return trabajoEncontrado;
-
     }
 }
 

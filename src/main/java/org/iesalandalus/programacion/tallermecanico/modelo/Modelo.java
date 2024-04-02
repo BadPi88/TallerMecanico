@@ -19,7 +19,6 @@ public interface Modelo {
 
     void insertar(Trabajo trabajo) throws OperationNotSupportedException;
 
-    //Cliente buscado comprobamos si no es nulo, es decir que existe.
     Cliente buscar(Cliente cliente);
 
     Vehiculo buscar(Vehiculo vehiculo);
@@ -46,7 +45,7 @@ public interface Modelo {
 
     List<Trabajo> getTrabajos();
 
-    List<Trabajo> getRevisiones(Cliente cliente);
+    List<Trabajo> getTrabajos(Cliente cliente);
 
-    List<Trabajo> getRevisiones(Vehiculo vehiculo);
+    List<Trabajo> getTrabajos(Vehiculo vehiculo);
 }

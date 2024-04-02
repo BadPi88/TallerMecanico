@@ -6,7 +6,6 @@ public record Vehiculo(String marca, String modelo, String matricula) {
     private static final String ER_MARCA = "[A-Z][a-z]+([ -]?[A-Z][a-z]+)?|[A-Z]+";
     private static final String ER_MATRICULA = "^\\d{4}[BCDFGHJKLMNPRSTVWXYZ]{3}";
 
-
     public Vehiculo {
         validarMarca(marca);
         validaModelo(modelo);
@@ -18,12 +17,11 @@ public record Vehiculo(String marca, String modelo, String matricula) {
         if (!marca.matches(ER_MARCA)) {
             throw new IllegalArgumentException("La marca no tiene un formato válido.");
         }
-        if (marca.isBlank()){
+        if (marca.isBlank()) {
             throw new IllegalArgumentException("La marca no tiene un formato válido.");
         }
-        
-    }
 
+    }
 
     public void validaModelo(String modelo) {
         Objects.requireNonNull(modelo, "El modelo no puede ser nulo.");
@@ -32,14 +30,12 @@ public record Vehiculo(String marca, String modelo, String matricula) {
         }
     }
 
-
     public void validarMatricula(String matricula) {
         Objects.requireNonNull(matricula, "La matrícula no puede ser nula.");
         if (!matricula.matches(ER_MATRICULA)) {
             throw new IllegalArgumentException("La matrícula no tiene un formato válido.");
         }
     }
-
 
     public static Vehiculo get(String matricula) {
         return new Vehiculo("Renault", "Megane", matricula);
@@ -57,6 +53,7 @@ public record Vehiculo(String marca, String modelo, String matricula) {
     public String toString() {
         return String.format("%s %s - %s", marca, modelo, matricula);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(matricula);

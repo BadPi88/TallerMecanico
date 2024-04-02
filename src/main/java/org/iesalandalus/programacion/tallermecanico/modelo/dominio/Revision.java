@@ -7,7 +7,7 @@ public class Revision extends Trabajo {
     private float FACTOR_HORA = 35;
 
     public Revision(Cliente cliente, Vehiculo vehiculo, LocalDate fechaInicio) {
-        super(cliente,vehiculo,fechaInicio);
+        super(cliente, vehiculo, fechaInicio);
         setCliente(cliente);
         setVehiculo(vehiculo);
         setFechaInicio(fechaInicio);
@@ -27,16 +27,14 @@ public class Revision extends Trabajo {
     }
 
 
-    
     public float getPrecioEspecifico() {
         return getHoras() * FACTOR_HORA;
     }
 
-
     @Override
     public String toString() {
         String x;
-        String revision = String.format("Revisión -> %s - %s (%s",this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA));
+        String revision = String.format("Revisión -> %s - %s (%s", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA));
 
         if (estaCerrada()) {
             x = String.format("%s - %s): %s horas, %4.2f € total",

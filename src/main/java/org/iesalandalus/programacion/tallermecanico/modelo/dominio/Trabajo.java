@@ -44,7 +44,7 @@ public abstract class Trabajo {
     }
 
     public static Trabajo get(Vehiculo vehiculo) {
-        return new Revision(new Cliente("Patricio","54120557Q","663636464"), vehiculo, LocalDate.now());
+        return new Revision(new Cliente("Patricio", "54120557Q", "663636464"), vehiculo, LocalDate.now());
     }
 
     public Cliente getCliente() {
@@ -125,7 +125,7 @@ public abstract class Trabajo {
         return precioTotal;
     }
 
-    private float getPrecioFijo(){
+    private float getPrecioFijo() {
         return FACTOR_DIA * getDias();
 
     }

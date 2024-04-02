@@ -1,12 +1,11 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.cascada;
 
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
+import org.iesalandalus.programacion.tallermecanico.modelo.Modelo;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.FabricaFuenteDatos;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Clientes;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Trabajos;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria.Vehiculos;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
@@ -14,25 +13,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ModeloCascada implements org.iesalandalus.programacion.tallermecanico.modelo.Modelo {
+public class ModeloCascada implements Modelo {
+    private final FabricaFuenteDatos fabricaFuenteDatos;
 
-    private Clientes clientes;
-    private Vehiculos vehiculos;
-    private Trabajos trabajos;
-
-    public ModeloCascada(FabricaFuenteDatos fuenteDatos) {
+    public ModeloCascada(FabricaFuenteDatos fabricaFuenteDatos) {
+        this.fabricaFuenteDatos = fabricaFuenteDatos;
     }
+
+    private IClientes clientes;
+    private IVehiculos vehiculos;
+    private ITrabajos trabajos;
 
     @Override
     public void comenzar() {
-        clientes = new Clientes();
-        vehiculos = new Vehiculos();
-        trabajos = new Trabajos();
+        clientes = fabricaFuenteDatos.crear().crearClientes();
+        vehiculos = fabricaFuenteDatos.crear().crearVehiculo();
+        trabajos = fabricaFuenteDatos.crear().crearTrabajo();
     }
 
     @Override
     public void terminar() {
-        System.out.print("El modelo ha terminado.");
+        System.out.println("Fin");
     }
 
     @Override
@@ -47,39 +48,33 @@ public class ModeloCascada implements org.iesalandalus.programacion.tallermecani
 
     @Override
     public void insertar(Trabajo trabajo) throws OperationNotSupportedException {
-        Objects.requireNonNull(trabajo, "Alquiler NuloError al Insertar");
         Cliente cliente = clientes.buscar(trabajo.getCliente());
         Vehiculo vehiculo = vehiculos.buscar(trabajo.getVehiculo());
-        trabajos.insertar(new Trabajo(cliente, vehiculo, trabajo.getFechaInicio()) {
-            @Override
-            public float getPrecioEspecifico() {
-                return 0;
-            }
-        });
+        if (trabajo instanceof Mecanico) {
+            trabajos.insertar(new Mecanico(cliente, vehiculo, trabajo.getFechaInicio()));
+        }
+        if (trabajo instanceof Revision) {
+            trabajos.insertar(new Revision(cliente, vehiculo, trabajo.getFechaInicio()));
+        }
+
     }
 
-    //Cliente buscado comprobamos si no es nulo, es decir que existe.
     @Override
     public Cliente buscar(Cliente cliente) {
-        cliente = Objects.requireNonNull(clientes.buscar(cliente), "No existe un cliente igual");
+        cliente = Objects.requireNonNull(clientes.buscar(cliente), "No existe un cliente igual.");
         return new Cliente(cliente);
     }
 
     @Override
     public Vehiculo buscar(Vehiculo vehiculo) {
-        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehiculo igual");
-        return vehiculo;
+        return vehiculos.buscar(vehiculo);
     }
 
     @Override
     public Trabajo buscar(Trabajo trabajo) {
-        trabajo = Objects.requireNonNull(trabajos.buscar(trabajo), "No existe una trabajo igual");
-        return new Trabajo(trabajo) {
-            @Override
-            public float getPrecioEspecifico() {
-                return 0;
-            }
-        };
+        Objects.requireNonNull(trabajos.buscar(trabajo), "No existe un trabajo igual.");
+        return Trabajo.copiar(trabajo);
+
     }
 
     @Override
@@ -105,8 +100,7 @@ public class ModeloCascada implements org.iesalandalus.programacion.tallermecani
     @Override
     public void borrar(Cliente cliente) throws OperationNotSupportedException {
         for (Trabajo trabajo : trabajos.get(cliente)) {
-            borrar(trabajo.getCliente());
-
+            trabajos.borrar(trabajo);
         }
         clientes.borrar(cliente);
     }
@@ -114,7 +108,7 @@ public class ModeloCascada implements org.iesalandalus.programacion.tallermecani
     @Override
     public void borrar(Vehiculo vehiculo) throws OperationNotSupportedException {
         for (Trabajo trabajo : trabajos.get(vehiculo)) {
-            borrar(trabajo);
+            trabajos.borrar(trabajo);
         }
         vehiculos.borrar(vehiculo);
     }
@@ -126,61 +120,42 @@ public class ModeloCascada implements org.iesalandalus.programacion.tallermecani
 
     @Override
     public List<Cliente> getClientes() {
-        List<Cliente> copiaClientes = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         for (Cliente cliente : clientes.get()) {
-            copiaClientes.add(new Cliente(cliente));
+            listaClientes.add(new Cliente(cliente));
         }
-        return copiaClientes;
+        return listaClientes;
     }
 
     @Override
     public List<Vehiculo> getVehiculos() {
-        return vehiculos.get();
+        return new ArrayList<>(vehiculos.get());
     }
 
     @Override
     public List<Trabajo> getTrabajos() {
-
-        List<Trabajo> listaRevisiones = new ArrayList<>();
+        ArrayList<Trabajo> listaTrabajos = new ArrayList<>();
         for (Trabajo trabajo : trabajos.get()) {
-            listaRevisiones.add(new Trabajo(trabajo) {
-                @Override
-                public float getPrecioEspecifico() {
-                    return 0;
-                }
-            });
+            listaTrabajos.add(Trabajo.copiar(trabajo));
         }
-        return listaRevisiones;
+        return listaTrabajos;
     }
 
     @Override
-    public List<Trabajo> getRevisiones(Cliente cliente) {
-        List<Trabajo> listaRevisionesConCliente = new ArrayList<>();
+    public List<Trabajo> getTrabajos(Cliente cliente) {
+        ArrayList<Trabajo> listaTrabajosIgualCliente = new ArrayList<>();
         for (Trabajo trabajo : trabajos.get(cliente)) {
-            listaRevisionesConCliente.add(new Trabajo(trabajo) {
-                @Override
-                public float getPrecioEspecifico() {
-                    return 0;
-                }
-            });
+            listaTrabajosIgualCliente.add(Trabajo.copiar(trabajo));
         }
-        return listaRevisionesConCliente;
+
+        return listaTrabajosIgualCliente;
     }
 
-    @Override
-    public List<Trabajo> getRevisiones(Vehiculo vehiculo) {
-        List<Trabajo> listaRevisionesConVehiculo = new ArrayList<>();
+    public List<Trabajo> getTrabajos(Vehiculo vehiculo) {
+        ArrayList<Trabajo> listaTrabajosIgualVehiculo = new ArrayList<>();
         for (Trabajo trabajo : trabajos.get(vehiculo)) {
-            listaRevisionesConVehiculo.add(new Trabajo(trabajo) {
-                @Override
-                public float getPrecioEspecifico() {
-                    return 0;
-                }
-            });
+            listaTrabajosIgualVehiculo.add(Trabajo.copiar(trabajo));
         }
-
-        return listaRevisionesConVehiculo;
+        return listaTrabajosIgualVehiculo;
     }
-
-
 }

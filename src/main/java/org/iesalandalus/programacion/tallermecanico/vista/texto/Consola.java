@@ -30,7 +30,7 @@ public class Consola {
             try {
                 opcion = Evento.get(leerEntero("\nElige un opción: "));
             } catch (IllegalArgumentException e) {
-                System.out.printf("ERROR: ", e.getMessage());
+                System.out.printf("ERROR! Numero no válido ", e.getMessage());
             }
         } while (opcion == null);
         return opcion;

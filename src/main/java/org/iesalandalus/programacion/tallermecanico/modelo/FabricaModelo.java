@@ -12,6 +12,5 @@ public enum FabricaModelo {
         }
     };
 
-
     public abstract Modelo crear(FabricaFuenteDatos fabricaFuenteDatos);
 }

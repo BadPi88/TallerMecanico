@@ -54,7 +54,8 @@ public class Controlador implements IControlador {
                 case BUSCAR_CLIENTE -> vista.mostrarCliente(modelo.buscar(vista.leerClienteDni()));
                 case BUSCAR_VEHICULO -> vista.mostrarVehiculos(modelo.buscar(vista.leerMatriculaVehiculo()));
                 case BUSCAR_TRABAJO -> vista.mostrarTrabajo(modelo.buscar(vista.leerRevision()));
-                case MODIFICAR_CLIENTE -> resultado = (modelo.modificar(vista.leerClienteDni(), vista.leerNuevoNombre(), vista.leerNuevoTelefono())) ? "EL cliente ha sido modificado correctamente." : "EL cliente no ha sido modificado correctamente.";
+                case MODIFICAR_CLIENTE ->
+                        resultado = (modelo.modificar(vista.leerClienteDni(), vista.leerNuevoNombre(), vista.leerNuevoTelefono())) ? "EL cliente ha sido modificado correctamente." : "EL cliente no ha sido modificado correctamente.";
                 case ANADIR_PRECIO_MATERIAL_TRABAJO -> {
                     modelo.anadirPrecioMaterial(vista.leerMecanico(), vista.leerPrecioMaterial());
                     resultado = "Precio añadido correctamente.";

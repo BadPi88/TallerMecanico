@@ -8,7 +8,6 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
 import java.time.LocalDate;
 import java.util.List;
 
-
 public class VistaTexto implements Vista {
 
     private final GestorEventos gestorEventos = new GestorEventos(Evento.values());

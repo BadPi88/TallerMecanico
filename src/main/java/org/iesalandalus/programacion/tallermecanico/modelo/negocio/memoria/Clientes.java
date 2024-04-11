@@ -15,7 +15,6 @@ public class Clientes implements IClientes {
         coleccionClientes = new ArrayList<>();
     }
 
-
     @Override
     public List<Cliente> get() {
 

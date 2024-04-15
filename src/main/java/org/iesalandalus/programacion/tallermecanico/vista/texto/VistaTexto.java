@@ -7,6 +7,7 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 
 public class VistaTexto implements Vista {
@@ -203,6 +204,16 @@ public class VistaTexto implements Vista {
         } else {
             System.out.println("No hay trabajos que mostrar para dicho vehículo.");
         }
+    }
+
+    @Override
+    public void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas) {
+
+    }
+
+    @Override
+    public LocalDate leerMes() {
+        return
     }
 
 }

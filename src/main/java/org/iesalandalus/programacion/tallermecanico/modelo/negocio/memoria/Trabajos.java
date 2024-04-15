@@ -1,17 +1,29 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio.memoria;
 
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Mecanico;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
-import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
-public class Trabajos implements org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos {
+public class Trabajos implements ITrabajos {
+
+    private static String FICHERO_TRABAJOS;
+    private static DateTimeFormatter FORMATO_FECHA;
+    private static String RAIZ;
+    private static String TRABAJO;
+    private static String CLIENTE;
+    private static String VEHICULO;
+    private static String FECHA_INICIO;
+    private static String FECHA_FIN;
+    private static String HORAS;
+    private static String PRECIO_MATERIAL;
+    private static String TIPO;
+    private static String REVISION;
+    private static String MECANICO;
+
 
     private final List<Trabajo> coleccionTrabajos;
     private Vehiculo vehiculo;
@@ -136,6 +148,32 @@ public class Trabajos implements org.iesalandalus.programacion.tallermecanico.mo
         if (trabajoEncontrado.estaCerrada())
             throw new OperationNotSupportedException("No existe ningún trabajo abierto para dicho vehículo.");
         return trabajoEncontrado;
+    }
+
+    public Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes) {
+        Map<TipoTrabajo, Integer> estadisticas = inicializarEstadisticas();
+        int i = 0;
+        int x = 0;
+        for (Trabajo trabajo : coleccionTrabajos ){
+            if (trabajo instanceof Revision){
+
+                estadisticas.put(TipoTrabajo.REVISION,i);
+            }
+            if (trabajo instanceof Mecanico){
+                estadisticas.put(TipoTrabajo.MECANICO,x);
+            }
+        }
+        return new EnumMap<>(TipoTrabajo.class);
+
+    }
+
+    private Map<TipoTrabajo, Integer> inicializarEstadisticas() {
+        Map<TipoTrabajo, Integer> estadisticas = new HashMap<>();
+
+            estadisticas.put(TipoTrabajo.REVISION, 0);
+            estadisticas.put(TipoTrabajo.MECANICO, 0);
+
+        return estadisticas;
     }
 }
 

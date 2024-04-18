@@ -11,19 +11,18 @@ import java.util.*;
 public class Trabajos implements ITrabajos {
 
     private static String FICHERO_TRABAJOS;
-    private static DateTimeFormatter FORMATO_FECHA;
-    private static String RAIZ;
-    private static String TRABAJO;
-    private static String CLIENTE;
-    private static String VEHICULO;
-    private static String FECHA_INICIO;
-    private static String FECHA_FIN;
-    private static String HORAS;
-    private static String PRECIO_MATERIAL;
-    private static String TIPO;
-    private static String REVISION;
-    private static String MECANICO;
-
+    private static DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final String RAIZ = "trabajos";
+    private static final String TRABAJO = "trabajo";
+    private static final String CLIENTE = "cliente";
+    private static final String VEHICULO = "vehiculo";
+    private static final String FEHCA_INICIO = "fechaInicio";
+    private static final String FECHA_FIN = "fechaFin";
+    private static final String HORAS = "horas";
+    private static final String PRECIO_MATERIAL = "precioMaterial";
+    private static final String TIPO = "tipo";
+    private static final String MECANICO = "mecanico";
+    private static final String REVISION = "revision";
 
     private final List<Trabajo> coleccionTrabajos;
     private Vehiculo vehiculo;
@@ -150,30 +149,32 @@ public class Trabajos implements ITrabajos {
         return trabajoEncontrado;
     }
 
+    // SIN TERMINAR
     public Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes) {
-        Map<TipoTrabajo, Integer> estadisticas = inicializarEstadisticas();
-        int i = 0;
-        int x = 0;
-        for (Trabajo trabajo : coleccionTrabajos ){
-            if (trabajo instanceof Revision){
-
-                estadisticas.put(TipoTrabajo.REVISION,i);
-            }
-            if (trabajo instanceof Mecanico){
-                estadisticas.put(TipoTrabajo.MECANICO,x);
+        Map<TipoTrabajo, Integer> estadisticas = inicializaEstadisticas();
+        int trabajosMecanicos = 0;
+        int trabajosRevision = 0;
+        for (Trabajo trabajo : get()) {
+            if (trabajo.getFechaInicio().getMonth().equals(mes.getMonth()) && trabajo.getFechaInicio().getYear() == mes.getYear()) {
+                if (trabajo instanceof Mecanico) {
+                    trabajosMecanicos++;
+                } else {
+                    trabajosRevision++;
+                }
             }
         }
-        return new EnumMap<>(TipoTrabajo.class);
-
+        return estadisticas;
     }
 
-    private Map<TipoTrabajo, Integer> inicializarEstadisticas() {
+    private Map<TipoTrabajo, Integer> inicializaEstadisticas() {
         Map<TipoTrabajo, Integer> estadisticas = new HashMap<>();
 
-            estadisticas.put(TipoTrabajo.REVISION, 0);
-            estadisticas.put(TipoTrabajo.MECANICO, 0);
+
+        estadisticas.put(TipoTrabajo.MECANICO, 0);
+        estadisticas.put(TipoTrabajo.REVISION, 0);
 
         return estadisticas;
     }
+
 }
 

@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import static org.iesalandalus.programacion.tallermecanico.vista.texto.Consola.leerFecha;
+
 
 public class VistaTexto implements Vista {
 
@@ -85,7 +87,7 @@ public class VistaTexto implements Vista {
     public Trabajo leerRevision() {
         Cliente cliente = leerClienteDni();
         Vehiculo vehiculo = leerVehiculoMatricula();
-        LocalDate fechaInicio = Consola.leerFecha("Introduce la fecha de inicio");
+        LocalDate fechaInicio = leerFecha("Introduce la fecha de inicio");
         return new Revision(cliente, vehiculo, fechaInicio);
     }
 
@@ -93,7 +95,7 @@ public class VistaTexto implements Vista {
     public Trabajo leerMecanico() {
         Cliente cliente = leerClienteDni();
         Vehiculo vehiculo = leerVehiculoMatricula();
-        LocalDate fechaInicio = Consola.leerFecha("Introduce la fecha de inicio");
+        LocalDate fechaInicio = leerFecha("Introduce la fecha de inicio");
         return new Mecanico(cliente, vehiculo, fechaInicio);
     }
 
@@ -119,7 +121,7 @@ public class VistaTexto implements Vista {
 
     @Override
     public LocalDate leerFechaCierre() {
-        return Consola.leerFecha("Introduce la fecha de cierre");
+        return leerFecha("Introduce la fecha de cierre");
     }
 
 
@@ -213,7 +215,7 @@ public class VistaTexto implements Vista {
 
     @Override
     public LocalDate leerMes() {
-        return
+        return leerFecha("Introduzca la fecha de inicio..");
     }
 
 }

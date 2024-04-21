@@ -15,7 +15,7 @@ public class Controlador implements IControlador {
         Objects.requireNonNull(vista, "La vista es nulo");
         this.modelo = modelo;
         this.vista = vista;
-        vista.getGestorEventos().suscribir(this, Evento.values());
+        this.vista.getGestorEventos().suscribir(this, Evento.values());
     }
 
     @Override
@@ -54,7 +54,8 @@ public class Controlador implements IControlador {
                 case BUSCAR_CLIENTE -> vista.mostrarCliente(modelo.buscar(vista.leerClienteDni()));
                 case BUSCAR_VEHICULO -> vista.mostrarVehiculos(modelo.buscar(vista.leerMatriculaVehiculo()));
                 case BUSCAR_TRABAJO -> vista.mostrarTrabajo(modelo.buscar(vista.leerRevision()));
-                case MODIFICAR_CLIENTE -> resultado = (modelo.modificar(vista.leerClienteDni(), vista.leerNuevoNombre(), vista.leerNuevoTelefono())) ? "EL cliente ha sido modificado correctamente." : "EL cliente no ha sido modificado correctamente.";
+                case MODIFICAR_CLIENTE ->
+                        resultado = (modelo.modificar(vista.leerClienteDni(), vista.leerNuevoNombre(), vista.leerNuevoTelefono())) ? "EL cliente ha sido modificado correctamente." : "EL cliente no ha sido modificado correctamente.";
                 case ANADIR_PRECIO_MATERIAL_TRABAJO -> {
                     modelo.anadirPrecioMaterial(vista.leerMecanico(), vista.leerPrecioMaterial());
                     resultado = "Precio añadido correctamente.";
@@ -82,9 +83,12 @@ public class Controlador implements IControlador {
                 case LISTAR_CLIENTES -> vista.mostrarClientes(modelo.getClientes());
                 case LISTAR_VEHICULOS -> vista.mostrarVehiculos(modelo.getVehiculos());
                 case LISTAR_TRABAJOS -> vista.mostrarTrabajos(modelo.getTrabajos());
+
                 case LISTAR_TRABAJOS_CLIENTES -> vista.mostrarTrabajos(modelo.getTrabajos(vista.leerClienteDni()));
                 case LISTAR_TRABAJOS_VEHICULOS ->
                         vista.mostrarTrabajosVehiculo(modelo.getTrabajos(vista.leerMatriculaVehiculo()));
+                case MOSTRAR_ESTADISTICAS_MENSUALES ->
+                        vista.mostrarEstadisticasMensuales(modelo.getEstadisticasMensuales(vista.leerMes()));
                 case SALIR -> terminar();
             }
             if (!resultado.isBlank()) {

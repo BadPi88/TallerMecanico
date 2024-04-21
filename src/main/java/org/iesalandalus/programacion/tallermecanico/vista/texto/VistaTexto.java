@@ -210,12 +210,13 @@ public class VistaTexto implements Vista {
 
     @Override
     public void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas) {
+        System.out.printf("Trabajos realizados en el mes seleccionado: %s %n");
 
     }
 
     @Override
     public LocalDate leerMes() {
-        return leerFecha("Introduzca la fecha de inicio..");
+        return Consola.leerFecha("Introduzca la fecha de inicio..");
     }
 
 }

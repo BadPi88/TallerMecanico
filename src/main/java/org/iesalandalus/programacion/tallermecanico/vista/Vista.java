@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.tallermecanico.vista;
 
 
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Cliente;
+import org.iesalandalus.programacion.tallermecanico.modelo.dominio.TipoTrabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Trabajo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.Vehiculo;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
@@ -10,6 +11,7 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public interface Vista {
@@ -58,9 +60,12 @@ public interface Vista {
 
     void mostrarTrabajos(List<Trabajo> trabajos);
 
-    void mostrarTrabajosCliente(List<Trabajo> trabajosCliente);
+    default void mostrarTrabajosCliente(List<Trabajo> trabajos){mostrarTrabajos(trabajos);};
 
-    void mostrarTrabajosVehiculo(List<Trabajo> trabajosVehiculo);
+    default void mostrarTrabajosVehiculo(List<Trabajo> trabajos){mostrarTrabajos(trabajos);};
 
+    void mostrarEstadisticasMensuales(Map<TipoTrabajo,Integer> estadisticas);
+
+    LocalDate leerMes();
 
 }

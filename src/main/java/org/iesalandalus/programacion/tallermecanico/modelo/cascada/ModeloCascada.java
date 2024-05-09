@@ -2,38 +2,40 @@ package org.iesalandalus.programacion.tallermecanico.modelo.cascada;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.Modelo;
 import org.iesalandalus.programacion.tallermecanico.modelo.dominio.*;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.FabricaFuenteDatos;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IClientes;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ITrabajos;
-import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.*;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class ModeloCascada implements Modelo {
-    private final FabricaFuenteDatos fabricaFuenteDatos;
-
-    public ModeloCascada(FabricaFuenteDatos fabricaFuenteDatos) {
-        this.fabricaFuenteDatos = fabricaFuenteDatos;
-    }
-
     private IClientes clientes;
     private IVehiculos vehiculos;
     private ITrabajos trabajos;
 
-    @Override
-    public void comenzar() {
-        clientes = fabricaFuenteDatos.crear().crearClientes();
-        vehiculos = fabricaFuenteDatos.crear().crearVehiculo();
-        trabajos = fabricaFuenteDatos.crear().crearTrabajo();
+    public ModeloCascada(FabricaFuenteDatos fabricaFuenteDatos) {
+        Objects.requireNonNull(fabricaFuenteDatos, "La factoría de la fuente de datos no puede ser nula.");
+        IFuenteDatos fuenteDatos = fabricaFuenteDatos.crear();
+        clientes = fuenteDatos.crearClientes();
+        vehiculos = fuenteDatos.crearVehiculos();
+        trabajos = fuenteDatos.crearTrabajos();
     }
 
     @Override
+    public void comenzar() {
+        clientes.comenzar();
+        vehiculos.comenzar();
+        trabajos.comenzar();
+    }
+    @Override
+
     public void terminar() {
-        System.out.println("Fin");
+        trabajos.terminar();
+        vehiculos.terminar();
+        clientes.terminar();
     }
 
     @Override
@@ -67,7 +69,8 @@ public class ModeloCascada implements Modelo {
 
     @Override
     public Vehiculo buscar(Vehiculo vehiculo) {
-        return vehiculos.buscar(vehiculo);
+        vehiculo = Objects.requireNonNull(vehiculos.buscar(vehiculo), "No existe un vehículo igual.");
+        return vehiculo;
     }
 
     @Override
@@ -157,5 +160,10 @@ public class ModeloCascada implements Modelo {
             listaTrabajosIgualVehiculo.add(Trabajo.copiar(trabajo));
         }
         return listaTrabajosIgualVehiculo;
+    }
+
+    @Override
+    public Map<TipoTrabajo, Integer> getEstadisticasMensuales(LocalDate mes) {
+        return trabajos.getEstadisticasMensuales(mes);
     }
 }

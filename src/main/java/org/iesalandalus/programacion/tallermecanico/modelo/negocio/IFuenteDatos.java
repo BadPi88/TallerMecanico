@@ -1,9 +1,9 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
-public interface IFuenteDatosMemoria {
+public interface IFuenteDatos {
     IClientes crearClientes();
 
-    IVehiculos crearVehiculo();
+    IVehiculos crearVehiculos();
 
-    ITrabajos crearTrabajo();
+    ITrabajos crearTrabajos();
 }

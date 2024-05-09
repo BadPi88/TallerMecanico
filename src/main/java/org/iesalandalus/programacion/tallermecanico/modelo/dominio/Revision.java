@@ -36,7 +36,7 @@ public class Revision extends Trabajo {
         String x;
         String revision = String.format("Revisión -> %s - %s (%s", this.cliente, this.vehiculo, this.fechaInicio.format(FORMATO_FECHA));
 
-        if (estaCerrada()) {
+        if (estaCerrado()) {
             x = String.format("%s - %s): %s horas, %4.2f € total",
                     revision, this.fechaFin.format(FORMATO_FECHA), this.horas, getPrecio());
         } else {

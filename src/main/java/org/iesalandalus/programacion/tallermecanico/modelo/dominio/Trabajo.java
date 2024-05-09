@@ -96,7 +96,7 @@ public abstract class Trabajo {
     }
 
     public void anadirHoras(int horas) throws OperationNotSupportedException {
-        if (estaCerrada()) {
+        if (estaCerrado()) {
             throw new OperationNotSupportedException("No se puede añadir horas, ya que el trabajo está cerrado.");
         } else if (horas <= 0 || horas >= 24) {
             throw new IllegalArgumentException("Las horas a añadir deben ser mayores que cero.");
@@ -104,13 +104,13 @@ public abstract class Trabajo {
         this.horas = this.horas + horas;
     }
 
-    public boolean estaCerrada() {
+    public boolean estaCerrado() {
         return fechaFin != null;
     }
 
     public void cerrar(LocalDate fechaFin) throws OperationNotSupportedException {
         Objects.requireNonNull(fechaFin, "La fecha de fin no puede ser nula.");
-        if (estaCerrada()) {
+        if (estaCerrado()) {
             throw new OperationNotSupportedException("El trabajo ya está cerrado.");
         } else {
             setFechaFin(fechaFin);
@@ -119,7 +119,7 @@ public abstract class Trabajo {
 
     public float getPrecio() {
         float precioTotal = 0;
-        if (estaCerrada()) {
+        if (estaCerrado()) {
             precioTotal = getPrecioFijo() + getPrecioEspecifico();
         }
         return precioTotal;
@@ -131,7 +131,7 @@ public abstract class Trabajo {
     }
 
     private float getDias() {
-        return (estaCerrada() ? ChronoUnit.DAYS.between(fechaInicio, fechaFin) : 0);
+        return (estaCerrado() ? ChronoUnit.DAYS.between(fechaInicio, fechaFin) : 0);
     }
 
     public abstract float getPrecioEspecifico();

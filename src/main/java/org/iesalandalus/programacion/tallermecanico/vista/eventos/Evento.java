@@ -11,10 +11,10 @@ public enum Evento {
     MODIFICAR_CLIENTE("Modificar Clientes", 15),
     INSERTAR_VEHICULO("Insertar vehiculo", 21),
     BUSCAR_VEHICULO("Buscar vehiculo", 22),
-    BORRAR_VEHICULO("Insertar vehiculo", 23),
+    BORRAR_VEHICULO("Borrar vehiculo", 23),
     LISTAR_VEHICULOS("Listar vehículos", 24),
-    INSERTAR_REVISION("Insertar revision", 31),
-    INSERTAR_MECANICO("Insertar mecánico", 30),
+    INSERTAR_REVISION("Insertar revision", 30),
+    INSERTAR_MECANICO("Insertar mecánico", 31),
     BUSCAR_TRABAJO("Buscar trabajo", 32),
     BORRAR_TRABAJO("Borrar trabajo", 33),
     LISTAR_TRABAJOS("Listar trabajos", 34),
@@ -22,7 +22,8 @@ public enum Evento {
     LISTAR_TRABAJOS_VEHICULOS("Listar trabajos por vehículo", 36),
     ANADIR_HORAS_TRABAJO("Añadir horas trabajo ", 37),
     ANADIR_PRECIO_MATERIAL_TRABAJO("Añadir precio material trabajo ", 38),
-    CERRAR_TRABAJO("Cerrar el trabajo", 39),
+    MOSTRAR_ESTADISTICAS_MENSUALES("Mostrar estadísticas Mensuales",39),
+    CERRAR_TRABAJO("Cerrar el trabajo", 40),
     SALIR("Salir", 0);
     private final String texto;
     private final Integer codigo;

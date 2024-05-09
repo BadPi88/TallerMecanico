@@ -6,6 +6,7 @@ import org.iesalandalus.programacion.tallermecanico.vista.eventos.Evento;
 import org.iesalandalus.programacion.tallermecanico.vista.eventos.GestorEventos;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -155,6 +156,7 @@ public class VistaTexto implements Vista {
 
     @Override
     public void mostrarClientes(List<Cliente> clientes) {
+        clientes.sort(Comparator.comparing(Cliente::getNombre).thenComparing(Cliente::getDni));
         if (!clientes.isEmpty()) {
             for (Cliente cliente : clientes) {
                 System.out.println(cliente);
@@ -166,6 +168,7 @@ public class VistaTexto implements Vista {
 
     @Override
     public void mostrarVehiculos(List<Vehiculo> vehiculos) {
+        vehiculos.sort(Comparator.comparing(Vehiculo::marca).thenComparing(Vehiculo::modelo).thenComparing(Vehiculo::matricula));
         if (!vehiculos.isEmpty()) {
             for (Vehiculo vehiculo : vehiculos) {
                 System.out.println(vehiculo);
@@ -177,6 +180,8 @@ public class VistaTexto implements Vista {
 
     @Override
     public void mostrarTrabajos(List<Trabajo> trabajos) {
+        Comparator<Cliente> comparadorCliente = Comparator.comparing(Cliente::getNombre).thenComparing(Cliente::getDni);
+        trabajos.sort(Comparator.comparing(Trabajo::getFechaInicio).thenComparing(Trabajo::getCliente, comparadorCliente));
         if (!trabajos.isEmpty()) {
             for (Trabajo trabajo : trabajos) {
                 System.out.println(trabajo);
@@ -210,7 +215,7 @@ public class VistaTexto implements Vista {
 
     @Override
     public void mostrarEstadisticasMensuales(Map<TipoTrabajo, Integer> estadisticas) {
-        System.out.printf("Trabajos realizados en el mes seleccionado: %s %n");
+        System.out.printf("Trabajos realizados en el mes seleccionado: %s %n", estadisticas);
 
     }
 

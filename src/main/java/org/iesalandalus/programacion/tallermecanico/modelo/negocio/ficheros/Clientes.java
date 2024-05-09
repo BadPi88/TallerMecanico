@@ -55,7 +55,7 @@ public class Clientes implements IClientes {
     public void terminar() {
         Document documentoXml = crearDocumentoXml();
         UtilidadesXml.escribirDocumentoXml(documentoXml,FICHEROS_CLIENTES);
-        
+
     }
 
     private void procesarDocumentoXml(Document docmuentoXml) {

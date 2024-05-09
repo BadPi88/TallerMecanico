@@ -87,7 +87,7 @@ public class Controlador implements IControlador {
                 case LISTAR_VEHICULOS -> vista.mostrarVehiculos(modelo.getVehiculos());
                 case LISTAR_TRABAJOS -> vista.mostrarTrabajos(modelo.getTrabajos());
 
-                case LISTAR_TRABAJOS_CLIENTES -> vista.mostrarTrabajos(modelo.getTrabajos(vista.leerClienteDni()));
+                case LISTAR_TRABAJOS_CLIENTES -> vista.mostrarTrabajosCliente(modelo.getTrabajos(vista.leerClienteDni()));
                 case LISTAR_TRABAJOS_VEHICULOS ->
                         vista.mostrarTrabajosVehiculo(modelo.getTrabajos(vista.leerMatriculaVehiculo()));
                 case MOSTRAR_ESTADISTICAS_MENSUALES ->

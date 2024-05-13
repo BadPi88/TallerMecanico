@@ -4,6 +4,7 @@ import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.Objects;
 
 public abstract class Trabajo {
@@ -82,10 +83,11 @@ public abstract class Trabajo {
     }
 
     private void setFechaFin(LocalDate fechaFin) {
-        Objects.requireNonNull(cliente, "La fecha final no puede ser nula.");
+        Objects.requireNonNull(fechaFin, "La fecha de fin no puede ser nula.");
         if (fechaFin.isBefore(fechaInicio)) {
             throw new IllegalArgumentException("La fecha de fin no puede ser anterior a la fecha de inicio.");
-        } else if (fechaFin.isAfter(LocalDate.now())) {
+        }
+        if (fechaFin.isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("La fecha de fin no puede ser futura.");
         }
         this.fechaFin = fechaFin;

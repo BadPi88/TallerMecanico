@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class Clientes implements IClientes {
     private List<Cliente> coleccionClientes;
-    private static final String FICHEROS_CLIENTES = String.format("%s%s%s", "resources", File.separator, "clientes.xml");
+    private static final String FICHEROS_CLIENTES = String.format("%s%s%s", "datos", File.separator, "clientes.xml");
     private static final String RAIZ = "clientes";
     private static final String CLIENTE = "cliente";
     private static final String NOMBRE = "nombre";
@@ -47,7 +47,7 @@ public class Clientes implements IClientes {
     public void comenzar() {
         Document documentoXML = UtilidadesXml.leerDocumentoXml(FICHEROS_CLIENTES);
         if (documentoXML != null) {
-            System.out.println("Fichero %s leido correctamente." + FICHEROS_CLIENTES);
+            System.out.println("Fichero "+ FICHEROS_CLIENTES + " leido correctamente.");
         }
     }
 

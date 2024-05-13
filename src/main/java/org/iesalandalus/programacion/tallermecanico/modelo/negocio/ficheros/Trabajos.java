@@ -16,7 +16,7 @@ import java.util.*;
 
 public class Trabajos implements ITrabajos {
 
-    private static final String FICHERO_TRABAJOS = String.format("%s%s%s", "resources", File.separator, "trabajos.xml");
+    private static final String FICHERO_TRABAJOS = String.format("%s%s%s", "datos", File.separator, "trabajos.xml");
     private static DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String RAIZ = "trabajos";
     private static final String TRABAJO = "trabajo";
@@ -36,6 +36,7 @@ public class Trabajos implements ITrabajos {
     public Trabajos() {
         coleccionTrabajos = new ArrayList<>();
     }
+
     static Trabajos getInstancia() {
         if (instancia == null) {
             instancia = new Trabajos();
@@ -121,7 +122,7 @@ public class Trabajos implements ITrabajos {
                 if (trabajo.getNodeType() == Node.ELEMENT_NODE) {
                     insertar(getTrabajo((Element) trabajo));
                 }
-            } catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e) {
+            } catch (OperationNotSupportedException|IllegalArgumentException|NullPointerException e) {
                 System.out.printf("Error al leer el trabajo %d. --> %s%n", i, e.getMessage());
             }
         }
@@ -200,20 +201,20 @@ public class Trabajos implements ITrabajos {
     @Override
     public void anadirHoras(Trabajo trabajo, int horas) throws OperationNotSupportedException {
         Objects.requireNonNull(trabajo, "No puedo añadir horas a un trabajo nulo.");
-        Trabajo revisionEncontrada = buscar(trabajo);
-        if (!coleccionTrabajos.contains(trabajo)) {
-            throw new OperationNotSupportedException("No existe ningún trabajo abierto para dicho vehículo.");
+        Trabajo trabajoAbierto = getTrabajoAbierto(trabajo.getVehiculo());
+        if (coleccionTrabajos.contains(trabajo)) {
+            trabajoAbierto.anadirHoras(horas);
         }
-        revisionEncontrada.anadirHoras(horas);
+        trabajoAbierto.anadirHoras(horas);
     }
 
     @Override
     public void anadirPrecioMaterial(Trabajo trabajo, float precioMaterial) throws OperationNotSupportedException {
-
-        Trabajo trabajoEncontrado = trabajo;
-        trabajoEncontrado.getPrecioEspecifico();
+        Trabajo trabajoEncontrado = Objects.requireNonNull(trabajo, "No puedo añadir precio del material a un trabajo nulo.");
+        trabajoEncontrado = getTrabajoAbierto(trabajo.getVehiculo());
         if (trabajoEncontrado instanceof Mecanico) {
             ((Mecanico) trabajoEncontrado).anadirPrecioMaterial(precioMaterial);
+
         } else {
             throw new OperationNotSupportedException("No se puede añadir precio al material para este tipo de trabajos.");
         }
@@ -222,12 +223,10 @@ public class Trabajos implements ITrabajos {
     @Override
     public void cerrar(Trabajo trabajo, LocalDate fechaFin) throws OperationNotSupportedException {
         Objects.requireNonNull(trabajo, "No puedo cerrar un trabajo nulo.");
-        Objects.requireNonNull(fechaFin, "La fecha de fin no puede ser nula.");
-
-        if (!coleccionTrabajos.contains(trabajo)) {
-            throw new OperationNotSupportedException("No existe ningún trabajo abierto para dicho vehículo.");
+        Trabajo trabajoEncontrado = getTrabajoAbierto(trabajo.getVehiculo());
+        if (coleccionTrabajos.contains(trabajoEncontrado)){
+            trabajoEncontrado.cerrar(fechaFin);
         }
-        trabajo.cerrar(fechaFin);
     }
 
     @Override
@@ -249,10 +248,18 @@ public class Trabajos implements ITrabajos {
     }
 
     private Trabajo getTrabajoAbierto(Vehiculo vehiculo) throws OperationNotSupportedException {
-        Objects.requireNonNull(vehiculo, "No puedo añadir precio del material a un trabajo nulo.");
-        Trabajo trabajoEncontrado = Trabajo.get(vehiculo);
-        if (trabajoEncontrado.estaCerrado())
+        Objects.requireNonNull(vehiculo, "No puedo operar sobre un vehículo nulo.");
+        Trabajo trabajoEncontrado = null;
+        Iterator<Trabajo> iteradorTrabajos = coleccionTrabajos.iterator();
+        while (iteradorTrabajos.hasNext() && trabajoEncontrado == null) {
+            Trabajo trabajo = iteradorTrabajos.next();
+            if (trabajo.getVehiculo().equals(vehiculo) && !trabajo.estaCerrado()) {
+                trabajoEncontrado = trabajo;
+            }
+        }
+        if (trabajoEncontrado == null) {
             throw new OperationNotSupportedException("No existe ningún trabajo abierto para dicho vehículo.");
+        }
         return trabajoEncontrado;
     }
 

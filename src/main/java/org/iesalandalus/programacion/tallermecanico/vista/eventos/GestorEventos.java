@@ -18,6 +18,10 @@ public class GestorEventos {
         Objects.requireNonNull(eventos, "Te tienes que suscribir a un evento.");
         for (Evento evento : eventos) {
             List<ReceptorEventos> usuarios = receptores.get(evento);
+            if (usuarios == null) {
+                usuarios = new ArrayList<>();
+                receptores.put(evento, usuarios);
+            }
             usuarios.add(receptor);
         }
     }

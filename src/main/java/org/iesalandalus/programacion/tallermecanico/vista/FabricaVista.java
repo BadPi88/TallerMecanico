@@ -1,6 +1,5 @@
 package org.iesalandalus.programacion.tallermecanico.vista;
 
-import org.iesalandalus.programacion.tallermecanico.vista.Vista;
 import org.iesalandalus.programacion.tallermecanico.vista.grafico.VistaGrafica;
 import org.iesalandalus.programacion.tallermecanico.vista.texto.VistaTexto;
 

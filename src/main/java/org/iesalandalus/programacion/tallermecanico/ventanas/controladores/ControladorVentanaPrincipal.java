@@ -37,8 +37,7 @@ public class ControladorVentanaPrincipal extends Controlador {
 
     @FXML
     void abrirVentanaClientes(ActionEvent event) {
-        Controlador ventanaClientes = Controladores.get("/vistas/borrarCliente.fxml","Borrar Cliente",null);
-        ventanaClientes.getEscenario().show();
+        VistaClientes ventanaClientes = (VistaClientes) Controladores.get("/vistas/vistaClientes.fxml","Borrar Cliente",getEscenario());
 
     }
 

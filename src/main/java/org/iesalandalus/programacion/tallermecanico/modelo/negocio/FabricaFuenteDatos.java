@@ -1,13 +1,24 @@
 package org.iesalandalus.programacion.tallermecanico.modelo.negocio;
 
 import org.iesalandalus.programacion.tallermecanico.modelo.negocio.ficheros.FuenteDatosFicheros;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.mongodb.FabricaFuentesDatosMongodb;
+import org.iesalandalus.programacion.tallermecanico.modelo.negocio.mongodb.MongoDB;
+
 public enum FabricaFuenteDatos {
 
-    FICHEROS{
+    FICHEROS {
         @Override
         public IFuenteDatos crear() {
             return new FuenteDatosFicheros();
         }
+    },
+
+    MONGODB {
+        @Override
+        public IFuenteDatos crear() {
+            return new FabricaFuentesDatosMongodb();
+        }
     };
+
     public abstract IFuenteDatos crear();
 }

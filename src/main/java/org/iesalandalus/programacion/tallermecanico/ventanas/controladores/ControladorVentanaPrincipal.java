@@ -27,7 +27,7 @@ public class ControladorVentanaPrincipal extends Controlador {
             escenaPrincipal = escena;
         }
     }
-    public Scene getEscenaPrincipal(){
+    public static Scene getEscenaPrincipal(){
         return escenaPrincipal;
     }
     @FXML
@@ -37,7 +37,8 @@ public class ControladorVentanaPrincipal extends Controlador {
 
     @FXML
     void abrirVentanaClientes(ActionEvent event) {
-        VistaClientes ventanaClientes = (VistaClientes) Controladores.get("/vistas/vistaClientes.fxml","Borrar Cliente",getEscenario());
+        Controlador ventanaClientes = (VistaClientes) Controladores.get("/vistas/vistaClientes.fxml","Borrar Cliente",getEscenario());
+        ventanaClientes.getEscenario().show();
 
     }
 

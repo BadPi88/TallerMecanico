@@ -6,6 +6,7 @@ import org.iesalandalus.programacion.tallermecanico.modelo.negocio.IVehiculos;
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Vehiculos implements IVehiculos {
 
@@ -40,7 +41,11 @@ public class Vehiculos implements IVehiculos {
 
     @Override
     public void insertar(Vehiculo vehiculo) throws OperationNotSupportedException {
-
+        Objects.requireNonNull(vehiculo, "No se puede insertar un vehículo nulo.");
+        if (coleccionVehiculos.contains(vehiculo)) {
+            throw new OperationNotSupportedException("Ya existe un vehículo con esa matrícula.");
+        }
+        coleccionVehiculos.add(vehiculo);
     }
 
     @Override

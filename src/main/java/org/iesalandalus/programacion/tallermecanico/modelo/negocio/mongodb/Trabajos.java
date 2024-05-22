@@ -94,7 +94,7 @@ public class Trabajos implements ITrabajos {
         return trabajo;
     }
 
-    private Document getDocumento(Trabajo trabajo) {
+    private Document getDocumento(Trabajo trabajo) throws OperationNotSupportedException {
         Document documento = null;
         if (trabajo != null) {
             Document documentoCliente = Clientes.getInstancia().getDocumento(trabajo.getCliente());

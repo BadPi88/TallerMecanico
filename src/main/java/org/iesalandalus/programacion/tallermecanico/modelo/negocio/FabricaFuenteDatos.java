@@ -11,7 +11,7 @@ public enum FabricaFuenteDatos {
             return new FuenteDatosFicheros();
         }
     },
-    MARIADB{
+    MARIADB {
         @Override
         public IFuenteDatos crear() {
             return new FuenteDatosMariaDB();

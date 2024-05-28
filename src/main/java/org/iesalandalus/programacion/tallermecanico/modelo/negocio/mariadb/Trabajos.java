@@ -21,7 +21,10 @@ public class Trabajos implements ITrabajos {
     private static final String MECANICO = "Mecánico";
     private static final String HORAS = "horas";
     private static final String PRECIO_MATERIAL = "precioMaterial";
+    private final List<Trabajo> coleccionTrabajos;
 
+    private Trabajos() { coleccionTrabajos = new ArrayList<>();
+    }
     private Connection conexion;
     private static Trabajos instancia;
 
@@ -31,8 +34,6 @@ public class Trabajos implements ITrabajos {
         }
         return instancia;
     }
-
-    private Trabajos() {}
 
 
     @Override
